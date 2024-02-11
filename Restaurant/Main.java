@@ -12,43 +12,62 @@ public class Main {
         System.out.println(Manager);
         Supply supply = new Supply();
 
-        // Add supplies with quantities and prices
-        supply.addSupply("Apple", 50, 1.0);
-        supply.addSupply("Banana", 30, 0.5);
-        supply.addSupply("Orange", 40, 0.75);
 
-        // Display the initial supplies
-        System.out.println("Initial Supplies:");
-        System.out.println(supply);
+        // Add supplies to the menu
+        supply.addSupply("Burger", 10, 5.99);
+        supply.addSupply("Pizza", 15, 8.99);
+        supply.addSupply("Salad", 20, 4.99);
 
-        // Create an Orders object
-        Orders orders = new Orders(supply);
+        // Display the menu
+        supply.displayMenu();
 
-        // Place orders
-        orders.placeOrder("Apple", 10);
-        orders.placeOrder("Banana", 20);
-        orders.placeOrder("Orange", 15);
+        // Create tables
+        Table table1 = new Table(1, 4);
+        Table table2 = new Table(2, 6);
+
+        // Display all tables
+        Table.displayAllTables();
+        
+        // Find the largest and smallest tables
+        Table largestTable = Table.findLargest();
+        System.out.println("Largest Table: " + largestTable);
+
+        Table smallestTable = Table.findSmallest();
+        System.out.println("Smallest Table: " + smallestTable);
+
+        // Place orders for the tables
+        Orders ordersTable1 = new Orders(supply);
+        Orders ordersTable2 = new Orders(supply);
+
+        ordersTable1.placeOrder("Burger", 2);
+        ordersTable1.placeOrder("Pizza", 1);
+
+        ordersTable2.placeOrder("Salad", 3);
 
         // Display the orders
-        System.out.println("Current Orders:");
-        System.out.println(orders);
+        System.out.println("Order for Table 1: " + ordersTable1);
+        System.out.println("Order for Table 2: " + ordersTable2);
 
-        // Remove some items from the order
-        orders.removeFromOrder("Apple", 5);
-        orders.removeFromOrder("Banana", 10);
+        // Process the orders
+        ordersTable1.processOrders();
+        ordersTable2.processOrders();
 
-        // Display the updated orders
-        System.out.println("Updated Orders:");
-        System.out.println(orders);
+        // Check supply quantity for an item
+        Integer burgerQuantity = supply.checkSupply("Burger");
+        System.out.println("Quantity of Burgers in supply: " + burgerQuantity);
 
-        // Process orders
-        orders.processOrders();
+        // Display updated supplies and table status
+        System.out.println("Updated Supplies: " + supply);
+        System.out.println("Table " + table1.getTableNumber() + " Status: Occupied - " + table1.isOccupied());
+        System.out.println("Table " + table2.getTableNumber() + " Status: Occupied - " + table2.isOccupied());
 
-        // Display the final supplies after processing orders
-        System.out.println("Final Supplies:");
-        System.out.println(supply);
-        System.out.println("The total cost is");
-        System.out.println(orders.getOrderTotal());
-        supply.displayMenu();
+        // Vacate the tables
+        table1.vacateTable();
+        table2.vacateTable();
+
+        // Display updated table status
+        System.out.println("Table " + table1.getTableNumber() + " Status: Occupied - " + table1.isOccupied());
+        System.out.println("Table " + table2.getTableNumber() + " Status: Occupied - " + table2.isOccupied());
     }
 }
+
