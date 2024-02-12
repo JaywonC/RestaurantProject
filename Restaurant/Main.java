@@ -2,16 +2,9 @@ package Restaurant;
 public class Main {
     public static void main(String[] args)
     {
-        Salary waiter = new Salary(8,15,"Emily","Waitress");
-        System.out.println(waiter);
-        Salary chef = new Salary(10, 25, "John", "Chef" ); 
-        System.out.println(chef);
-        Salary HeadChef = new Salary(10, 30, "Joe", "Head Chef"); 
-        System.out.println(HeadChef);
         Salary Manager = new Salary(10, 35.50, "Bob", "Manager"); 
         System.out.println(Manager);
         Supply supply = new Supply();
-
 
         // Add supplies to the menu
         supply.addSupply("Burger", 10, 5.99);
@@ -27,7 +20,7 @@ public class Main {
 
         // Display all tables
         Table.displayAllTables();
-        
+
         // Find the largest and smallest tables
         Table largestTable = Table.findLargest();
         System.out.println("Largest Table: " + largestTable);
